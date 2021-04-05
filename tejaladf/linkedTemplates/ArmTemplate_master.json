@@ -35,6 +35,10 @@
 			"type": "string",
 			"defaultValue": "admin"
 		},
+		"SqlServerLSADVWorks_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "admin"
+		},
 		"triggeredInsan_properties_JustDoCopy_parameters_SourceFile": {
 			"type": "string",
 			"defaultValue": "@triggerBody().fileName"
@@ -42,10 +46,6 @@
 		"triggeredInsan_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/f644db40-4eb4-448a-a29f-5e1cb52a783e/resourceGroups/tejallti/providers/Microsoft.Storage/storageAccounts/tejalltistorageacc"
-		},
-		"SqlServerLSADVWorks_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "admin"
 		},
 		"containerUri": {
 			"type": "string",

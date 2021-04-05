@@ -998,36 +998,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/triggeredInsan')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "JustDoCopy",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"SourceFile": "[parameters('triggeredInsan_properties_JustDoCopy_parameters_SourceFile')]"
-						}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/tejalcontainer/blobs/",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('triggeredInsan_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/DifferentDept')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -1048,7 +1018,6 @@
 						"typeProperties": {
 							"source": {
 								"type": "SqlServerSource",
-								"sqlReaderQuery": "select DepartmentID as id,name as table_name from AdventureWorks2012.HumanResources.\nDepartment",
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
@@ -1093,7 +1062,7 @@
 										"source": {
 											"type": "SqlServerSource",
 											"sqlReaderQuery": {
-												"value": "select * from AdventureWorks2012.Employee where departmentId=@(item().id)",
+												"value": "select * from AdventureWorks2012.HumanResources.Employee as e inner join AdventureWorks2012.HumanResources.EmployeeDepartmentHistory as d on e.BusinessEntityID=d.BusinessEntityID where DepartmentID=@(item().DepartmentID)",
 												"type": "Expression"
 											},
 											"queryTimeout": "02:00:00",
@@ -1124,7 +1093,9 @@
 										{
 											"referenceName": "AzureSqlTable1",
 											"type": "DatasetReference",
-											"parameters": {}
+											"parameters": {
+												"tablename": "@item().Name"
+											}
 										}
 									]
 								}
@@ -1133,6 +1104,36 @@
 					}
 				],
 				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggeredInsan')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "JustDoCopy",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"SourceFile": "[parameters('triggeredInsan_properties_JustDoCopy_parameters_SourceFile')]"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/tejalcontainer/blobs/",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('triggeredInsan_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
 			},
 			"dependsOn": []
 		}
