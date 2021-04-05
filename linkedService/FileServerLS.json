@@ -1,0 +1,17 @@
+{
+	"name": "FileServerLS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "C:\\Users\\admin\\Documents\\tejal lti",
+			"userId": "sqladmin",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIxYTk5NjgyOC0wZGMyLTRiZDYtYmMzMy0zMWY4NzM2ZjE4NTkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "OnPremIR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
