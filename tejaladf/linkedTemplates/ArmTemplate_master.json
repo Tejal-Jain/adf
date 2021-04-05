@@ -97,12 +97,6 @@
 					},
 					"SqlServerLSADVWorks_properties_typeProperties_userName": {
 						"value": "[parameters('SqlServerLSADVWorks_properties_typeProperties_userName')]"
-					},
-					"triggeredInsan_properties_JustDoCopy_parameters_SourceFile": {
-						"value": "[parameters('triggeredInsan_properties_JustDoCopy_parameters_SourceFile')]"
-					},
-					"triggeredInsan_properties_typeProperties_scope": {
-						"value": "[parameters('triggeredInsan_properties_typeProperties_scope')]"
 					}
 				}
 			},
@@ -121,6 +115,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"triggeredInsan_properties_JustDoCopy_parameters_SourceFile": {
+						"value": "[parameters('triggeredInsan_properties_JustDoCopy_parameters_SourceFile')]"
+					},
+					"triggeredInsan_properties_typeProperties_scope": {
+						"value": "[parameters('triggeredInsan_properties_typeProperties_scope')]"
 					}
 				}
 			},
