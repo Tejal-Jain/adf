@@ -8,7 +8,11 @@
 		"parameters": {
 			"nameoffiles": {
 				"type": "array",
-				"defaultValue": "[\"name\":\"customer\"]"
+				"defaultValue": [
+					{
+						"name": "customer"
+					}
+				]
 			}
 		},
 		"annotations": [],
