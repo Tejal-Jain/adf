@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "select DepartmentID,name from AdventureWorks2012.HumanResources.\nDepartment",
+						"sqlReaderQuery": "select DepartmentID as id,name as table_name from AdventureWorks2012.HumanResources.\nDepartment",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -41,7 +41,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Lookup1').output",
+						"value": "@activity('Lookup1').output.value",
 						"type": "Expression"
 					},
 					"activities": [
@@ -61,7 +61,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "select * from employee where departmentId=@item()",
+										"value": "select * from AdventureWorks2012.Employee where departmentId=@(item().id)",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
