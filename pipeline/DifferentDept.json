@@ -17,7 +17,6 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "select DepartmentID as id,name as table_name from AdventureWorks2012.HumanResources.\nDepartment",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -61,7 +60,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "select * from AdventureWorks2012.Employee where departmentId=@(item().id)",
+										"value": "select * from AdventureWorks2012.HumanResources.Employee as e inner join AdventureWorks2012.HumanResources.EmployeeDepartmentHistory as d on e.BusinessEntityID=d.BusinessEntityID where DepartmentID=@(item().DepartmentID)",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -90,7 +89,10 @@
 							"outputs": [
 								{
 									"referenceName": "AzureSqlTable1",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"tablename": "@item().Name"
+									}
 								}
 							]
 						}
