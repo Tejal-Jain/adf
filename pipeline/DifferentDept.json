@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "select name from [HumanResources].[\nDepartment]",
+						"sqlReaderQuery": "select name from AdventureWorks2012.HumanResources.\nDepartment",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
