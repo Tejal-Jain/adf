@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "tejaladf"
+		},
+		"AzureBlobStorageLS_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabaseLSSample_connectionString": {
+			"value": ""
+		},
+		"SqlServerLS_connectionString": {
+			"value": ""
+		},
+		"SqlServerLS_password": {
+			"value": ""
+		},
+		"SqlServerLS_properties_typeProperties_userName": {
+			"value": "admin"
+		},
+		"triggeredInsan_properties_JustDoCopy_parameters_SourceFile": {
+			"value": "@triggerBody().fileName"
+		},
+		"triggeredInsan_properties_typeProperties_scope": {
+			"value": "/subscriptions/f644db40-4eb4-448a-a29f-5e1cb52a783e/resourceGroups/tejallti/providers/Microsoft.Storage/storageAccounts/tejalltistorageacc"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
