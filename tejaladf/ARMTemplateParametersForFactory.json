@@ -17,6 +17,12 @@
 		"SqlServerLS_password": {
 			"value": ""
 		},
+		"SqlServerLSADVWorks_connectionString": {
+			"value": ""
+		},
+		"SqlServerLSADVWorks_password": {
+			"value": ""
+		},
 		"SqlServerLS_properties_typeProperties_userName": {
 			"value": "admin"
 		},
@@ -25,6 +31,9 @@
 		},
 		"triggeredInsan_properties_typeProperties_scope": {
 			"value": "/subscriptions/f644db40-4eb4-448a-a29f-5e1cb52a783e/resourceGroups/tejallti/providers/Microsoft.Storage/storageAccounts/tejalltistorageacc"
+		},
+		"SqlServerLSADVWorks_properties_typeProperties_userName": {
+			"value": "admin"
 		}
 	}
 }

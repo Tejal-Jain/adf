@@ -23,6 +23,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlServerLS'"
 		},
+		"SqlServerLSADVWorks_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServerLSADVWorks'"
+		},
+		"SqlServerLSADVWorks_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlServerLSADVWorks'"
+		},
 		"SqlServerLS_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "admin"
@@ -34,6 +42,10 @@
 		"triggeredInsan_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/f644db40-4eb4-448a-a29f-5e1cb52a783e/resourceGroups/tejallti/providers/Microsoft.Storage/storageAccounts/tejalltistorageacc"
+		},
+		"SqlServerLSADVWorks_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "admin"
 		},
 		"containerUri": {
 			"type": "string",
@@ -74,8 +86,17 @@
 					"SqlServerLS_password": {
 						"value": "[parameters('SqlServerLS_password')]"
 					},
+					"SqlServerLSADVWorks_connectionString": {
+						"value": "[parameters('SqlServerLSADVWorks_connectionString')]"
+					},
+					"SqlServerLSADVWorks_password": {
+						"value": "[parameters('SqlServerLSADVWorks_password')]"
+					},
 					"SqlServerLS_properties_typeProperties_userName": {
 						"value": "[parameters('SqlServerLS_properties_typeProperties_userName')]"
+					},
+					"SqlServerLSADVWorks_properties_typeProperties_userName": {
+						"value": "[parameters('SqlServerLSADVWorks_properties_typeProperties_userName')]"
 					},
 					"triggeredInsan_properties_JustDoCopy_parameters_SourceFile": {
 						"value": "[parameters('triggeredInsan_properties_JustDoCopy_parameters_SourceFile')]"
@@ -86,6 +107,26 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "tejaladf_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'tejaladf_ArmTemplate_0')]"
+			]
 		}
 	]
 }
