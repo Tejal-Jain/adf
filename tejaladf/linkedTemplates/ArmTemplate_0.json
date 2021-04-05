@@ -892,7 +892,7 @@
 				],
 				"typeProperties": {
 					"schema": "HumanResources",
-					"table": "Department"
+					"table": "EmployeeDepartmentHistory"
 				}
 			},
 			"dependsOn": [
