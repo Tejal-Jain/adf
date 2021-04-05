@@ -1,0 +1,27 @@
+{
+	"name": "triggeredInsan",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "JustDoCopy",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"SourceFile": "@triggerBody().fileName"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/tejalcontainer/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/f644db40-4eb4-448a-a29f-5e1cb52a783e/resourceGroups/tejallti/providers/Microsoft.Storage/storageAccounts/tejalltistorageacc",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

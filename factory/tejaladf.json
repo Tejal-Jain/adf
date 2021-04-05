@@ -1,0 +1,9 @@
+{
+	"name": "tejaladf",
+	"location": "southeastasia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "8bfd42f0-d575-4f17-a9de-2ec6628a4f84",
+		"tenantId": "02aa9fc1-18bc-4798-a020-e01c854dd434"
+	}
+}
