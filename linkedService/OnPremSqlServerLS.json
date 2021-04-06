@@ -1,0 +1,35 @@
+{
+	"name": "OnPremSqlServerLS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"servernameOnPrem": {
+				"type": "string",
+				"defaultValue": "DEVELOPER\\TEJAL"
+			},
+			"dbname": {
+				"type": "string",
+				"defaultValue": "AdventureWorksDW2012"
+			},
+			"username": {
+				"type": "string",
+				"defaultValue": "admin"
+			},
+			"pass": {
+				"type": "string",
+				"defaultValue": "admin123"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "Integrated Security=True;Data Source=@{linkedService().servernameOnPrem};Initial Catalog=@{linkedService().dbname}",
+			"userName": "@{linkedService().username}",
+			"password": "@{linkedService().pass}"
+		},
+		"connectVia": {
+			"referenceName": "OnPremIR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
