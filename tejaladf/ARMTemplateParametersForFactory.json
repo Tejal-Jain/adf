@@ -29,6 +29,9 @@
 		"SqlServerLSADVWorks_password": {
 			"value": ""
 		},
+		"blobLS_connectionString": {
+			"value": ""
+		},
 		"FileServerLS_properties_typeProperties_host": {
 			"value": "C:\\Users\\admin\\Documents\\tejal lti"
 		},
