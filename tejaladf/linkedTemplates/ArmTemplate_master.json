@@ -35,6 +35,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlServerLSADVWorks'"
 		},
+		"AzureSqlDatabaseEmptyLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabaseEmptyLS'"
+		},
 		"FileServerLS_properties_typeProperties_host": {
 			"type": "string",
 			"defaultValue": "C:\\Users\\admin\\Documents\\tejal lti"
@@ -91,6 +95,9 @@
 					},
 					"AzureSqlDatabaseLSSample_connectionString": {
 						"value": "[parameters('AzureSqlDatabaseLSSample_connectionString')]"
+					},
+					"AzureSqlDatabaseEmptyLS_connectionString": {
+						"value": "[parameters('AzureSqlDatabaseEmptyLS_connectionString')]"
 					},
 					"FileServerLS_password": {
 						"value": "[parameters('FileServerLS_password')]"
