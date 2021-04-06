@@ -21,7 +21,7 @@
 						"partitionOption": "None"
 					},
 					"sink": {
-						"type": "SqlServerSink",
+						"type": "AzureSqlSink",
 						"tableOption": "autoCreate"
 					},
 					"enableStaging": false,
@@ -42,7 +42,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "SqlServerTable4",
+						"referenceName": "AzureSqlTable4",
 						"type": "DatasetReference"
 					}
 				]
