@@ -42,7 +42,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "SqlServerTable3",
+						"referenceName": "SqlServerTable4",
 						"type": "DatasetReference"
 					}
 				]

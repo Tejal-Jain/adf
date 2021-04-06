@@ -3,7 +3,13 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "OnPremSqlServerLS",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"servernameOnPrem": "DEVELOPER\\TEJAL",
+				"dbname": "AdventureWorksDW2012",
+				"username": "admin",
+				"pass": "admin123"
+			}
 		},
 		"annotations": [],
 		"type": "SqlServerTable",
