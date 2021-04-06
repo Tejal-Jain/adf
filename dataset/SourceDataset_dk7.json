@@ -1,0 +1,45 @@
+{
+	"name": "SourceDataset_dk7",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FileServerLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Customer",
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": "SalesData.xlsx"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "CustomerID",
+				"type": "String"
+			},
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			},
+			{
+				"name": "State",
+				"type": "String"
+			},
+			{
+				"name": "PinCode",
+				"type": "String"
+			},
+			{
+				"name": "Tel",
+				"type": "String"
+			}
+		]
+	}
+}
