@@ -19,13 +19,20 @@
 						"type": "ExcelSource",
 						"storeSettings": {
 							"type": "FileServerReadSettings",
-							"recursive": false,
+							"fileListPath": "SalesData.xlsx",
 							"enablePartitionDiscovery": false
 						}
 					},
 					"dataset": {
 						"referenceName": "ExcelSourceDS",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"nameoffiles": [
+								{
+									"name": "customer"
+								}
+							]
+						}
 					},
 					"firstRowOnly": false
 				}
