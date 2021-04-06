@@ -8,6 +8,9 @@
 		"AzureBlobStorageLS_connectionString": {
 			"value": ""
 		},
+		"AzureSqlDatabaseEmptyLS_connectionString": {
+			"value": ""
+		},
 		"AzureSqlDatabaseLSSample_connectionString": {
 			"value": ""
 		},
@@ -24,9 +27,6 @@
 			"value": ""
 		},
 		"SqlServerLSADVWorks_password": {
-			"value": ""
-		},
-		"AzureSqlDatabaseEmptyLS_connectionString": {
 			"value": ""
 		},
 		"FileServerLS_properties_typeProperties_host": {

@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageLS'"
 		},
+		"AzureSqlDatabaseEmptyLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabaseEmptyLS'"
+		},
 		"AzureSqlDatabaseLSSample_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabaseLSSample'"
@@ -34,10 +38,6 @@
 		"SqlServerLSADVWorks_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlServerLSADVWorks'"
-		},
-		"AzureSqlDatabaseEmptyLS_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabaseEmptyLS'"
 		},
 		"FileServerLS_properties_typeProperties_host": {
 			"type": "string",
@@ -93,11 +93,11 @@
 					"AzureBlobStorageLS_connectionString": {
 						"value": "[parameters('AzureBlobStorageLS_connectionString')]"
 					},
-					"AzureSqlDatabaseLSSample_connectionString": {
-						"value": "[parameters('AzureSqlDatabaseLSSample_connectionString')]"
-					},
 					"AzureSqlDatabaseEmptyLS_connectionString": {
 						"value": "[parameters('AzureSqlDatabaseEmptyLS_connectionString')]"
+					},
+					"AzureSqlDatabaseLSSample_connectionString": {
+						"value": "[parameters('AzureSqlDatabaseLSSample_connectionString')]"
 					},
 					"FileServerLS_password": {
 						"value": "[parameters('FileServerLS_password')]"
