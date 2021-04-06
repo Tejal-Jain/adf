@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabaseLSSample'"
 		},
+		"FileServerLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServerLS'"
+		},
 		"SqlServerLS_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SqlServerLS'"
@@ -31,23 +35,19 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlServerLSADVWorks'"
 		},
-		"FileServerLS_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'FileServerLS'"
+		"FileServerLS_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\Users\\admin\\Documents\\tejal lti"
+		},
+		"FileServerLS_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "admin"
 		},
 		"SqlServerLS_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "admin"
 		},
 		"SqlServerLSADVWorks_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "admin"
-		},
-		"FileServerLS_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "C:\\Users\\admin\\Documents\\tejal lti"
-		},
-		"FileServerLS_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "admin"
 		}
@@ -179,6 +179,33 @@
 					"quoteChar": "\""
 				},
 				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorageLS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_dk7')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorageLS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "copyexcel",
+						"container": "tejalcontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorageLS')]"
@@ -377,6 +404,30 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/FileServerLS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "[parameters('FileServerLS_properties_typeProperties_host')]",
+					"userId": "[parameters('FileServerLS_properties_typeProperties_userId')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('FileServerLS_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "OnPremIR",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/OnPremIR')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SqlServerLS')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -413,30 +464,6 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('SqlServerLSADVWorks_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "OnPremIR",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/OnPremIR')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/FileServerLS')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "FileServer",
-				"typeProperties": {
-					"host": "[parameters('FileServerLS_properties_typeProperties_host')]",
-					"userId": "[parameters('FileServerLS_properties_typeProperties_userId')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('FileServerLS_password')]"
 					}
 				},
 				"connectVia": {
@@ -825,73 +852,41 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SourceDataset_ehs')]",
+			"name": "[concat(parameters('factoryName'), '/ExcelSourceDS')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "SqlServerLS",
+					"referenceName": "FileServerLS",
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"cw_table": {
-						"type": "String"
+					"nameoffiles": {
+						"type": "array",
+						"defaultValue": [
+							{
+								"name": "customer"
+							}
+						]
 					}
 				},
 				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [],
+				"type": "Excel",
 				"typeProperties": {
-					"schema": "dbo",
-					"table": {
-						"value": "@dataset().cw_table",
+					"sheetName": {
+						"value": "@dataset().nameoffiles",
 						"type": "Expression"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/SqlServerLS')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SqlServerTable1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SqlServerLSADVWorks",
-					"type": "LinkedServiceReference"
+					},
+					"location": {
+						"type": "FileServerLocation",
+						"fileName": "SalesData.xlsx"
+					},
+					"firstRowAsHeader": true
 				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "DepartmentID",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "GroupName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ModifiedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "HumanResources",
-					"table": "Department"
-				}
+				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/SqlServerLSADVWorks')]"
+				"[concat(variables('factoryId'), '/linkedServices/FileServerLS')]"
 			]
 		}
 	]

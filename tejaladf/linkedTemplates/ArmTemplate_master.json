@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabaseLSSample'"
 		},
+		"FileServerLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServerLS'"
+		},
 		"SqlServerLS_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SqlServerLS'"
@@ -31,9 +35,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlServerLSADVWorks'"
 		},
-		"FileServerLS_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'FileServerLS'"
+		"FileServerLS_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\Users\\admin\\Documents\\tejal lti"
+		},
+		"FileServerLS_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "admin"
 		},
 		"SqlServerLS_properties_typeProperties_userName": {
 			"type": "string",
@@ -50,14 +58,6 @@
 		"triggeredInsan_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/f644db40-4eb4-448a-a29f-5e1cb52a783e/resourceGroups/tejallti/providers/Microsoft.Storage/storageAccounts/tejalltistorageacc"
-		},
-		"FileServerLS_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "C:\\Users\\admin\\Documents\\tejal lti"
-		},
-		"FileServerLS_properties_typeProperties_userId": {
-			"type": "string",
-			"defaultValue": "admin"
 		},
 		"containerUri": {
 			"type": "string",
@@ -92,6 +92,9 @@
 					"AzureSqlDatabaseLSSample_connectionString": {
 						"value": "[parameters('AzureSqlDatabaseLSSample_connectionString')]"
 					},
+					"FileServerLS_password": {
+						"value": "[parameters('FileServerLS_password')]"
+					},
 					"SqlServerLS_connectionString": {
 						"value": "[parameters('SqlServerLS_connectionString')]"
 					},
@@ -104,20 +107,17 @@
 					"SqlServerLSADVWorks_password": {
 						"value": "[parameters('SqlServerLSADVWorks_password')]"
 					},
-					"FileServerLS_password": {
-						"value": "[parameters('FileServerLS_password')]"
+					"FileServerLS_properties_typeProperties_host": {
+						"value": "[parameters('FileServerLS_properties_typeProperties_host')]"
+					},
+					"FileServerLS_properties_typeProperties_userId": {
+						"value": "[parameters('FileServerLS_properties_typeProperties_userId')]"
 					},
 					"SqlServerLS_properties_typeProperties_userName": {
 						"value": "[parameters('SqlServerLS_properties_typeProperties_userName')]"
 					},
 					"SqlServerLSADVWorks_properties_typeProperties_userName": {
 						"value": "[parameters('SqlServerLSADVWorks_properties_typeProperties_userName')]"
-					},
-					"FileServerLS_properties_typeProperties_host": {
-						"value": "[parameters('FileServerLS_properties_typeProperties_host')]"
-					},
-					"FileServerLS_properties_typeProperties_userId": {
-						"value": "[parameters('FileServerLS_properties_typeProperties_userId')]"
 					}
 				}
 			},
