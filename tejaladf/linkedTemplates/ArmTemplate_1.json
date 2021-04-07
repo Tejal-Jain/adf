@@ -525,7 +525,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileSystem": "tejalfs"
+						"fileSystem": "namaste"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
