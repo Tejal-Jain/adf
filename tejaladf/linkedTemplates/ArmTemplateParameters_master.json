@@ -17,6 +17,9 @@
 		"FileServerLS_password": {
 			"value": ""
 		},
+		"SqlServer1_connectionString": {
+			"value": ""
+		},
 		"SqlServerLS_connectionString": {
 			"value": ""
 		},
@@ -30,9 +33,6 @@
 			"value": ""
 		},
 		"blobLS_connectionString": {
-			"value": ""
-		},
-		"SqlServer1_connectionString": {
 			"value": ""
 		},
 		"FileServerLS_properties_typeProperties_host": {
