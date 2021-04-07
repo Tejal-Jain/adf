@@ -47,6 +47,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'blobLS'"
 		},
+		"AzureDataLakeStorageLs_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorageLs'"
+		},
 		"FileServerLS_properties_typeProperties_host": {
 			"type": "string",
 			"defaultValue": "C:\\Users\\admin\\Documents\\tejal lti"
@@ -70,6 +74,10 @@
 		"triggeredInsan_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/f644db40-4eb4-448a-a29f-5e1cb52a783e/resourceGroups/tejallti/providers/Microsoft.Storage/storageAccounts/tejalltistorageacc"
+		},
+		"AzureDataLakeStorageLs_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://tejalgen2.dfs.core.windows.net"
 		},
 		"containerUri": {
 			"type": "string",
@@ -112,6 +120,12 @@
 					},
 					"blobLS_connectionString": {
 						"value": "[parameters('blobLS_connectionString')]"
+					},
+					"AzureDataLakeStorageLs_accountKey": {
+						"value": "[parameters('AzureDataLakeStorageLs_accountKey')]"
+					},
+					"AzureDataLakeStorageLs_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorageLs_properties_typeProperties_url')]"
 					}
 				}
 			},
