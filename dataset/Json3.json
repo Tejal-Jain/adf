@@ -1,0 +1,67 @@
+{
+	"name": "Json3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "blobLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "assfour"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"ProductKey": {
+					"type": "integer"
+				},
+				"ProductAlternateKey": {
+					"type": "string"
+				},
+				"EnglishProductName": {
+					"type": "string"
+				},
+				"SpanishProductName": {
+					"type": "string"
+				},
+				"FrenchProductName": {
+					"type": "string"
+				},
+				"FinishedGoodsFlag": {
+					"type": "boolean"
+				},
+				"Color": {
+					"type": "string"
+				},
+				"SafetyStockLevel": {
+					"type": "integer"
+				},
+				"ReorderPoint": {
+					"type": "integer"
+				},
+				"SizeRange": {
+					"type": "string"
+				},
+				"DaysToManufacture": {
+					"type": "integer"
+				},
+				"LargePhoto": {
+					"type": "string"
+				},
+				"StartDate": {
+					"type": "string"
+				},
+				"Status": {
+					"type": "string"
+				},
+				"Class": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
