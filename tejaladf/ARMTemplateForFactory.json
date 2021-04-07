@@ -3295,7 +3295,7 @@
 							"source": {
 								"type": "AzureSqlSource",
 								"sqlReaderQuery": {
-									"value": "select c.FirstName+' ' +c.LastName +'bought' +p.ProductName +'from' + c.SalesPerson as data from (((\nSalesLT.Customer as c inner join SalesLt.SalesOrderDetail as h  on c.CustomerID=h.CustomerID)\ninner join SalesLT.SalesOrderDetail as d on h.SalesOrderID=d.SalesOrderID) inner join SAlesLT.Product as p on p.ProductID=d.ProductID",
+									"value": "select c.FirstName+' ' +c.LastName +' bought ' +p.Name +' from ' + c.SalesPerson as dop from (((\n[SalesLT].[Customer] as c inner join [SalesLT].[SalesOrderHeader] as h  on c.CustomerID=h.CustomerID)\ninner join SalesLT.SalesOrderDetail as d on h.SalesOrderID=d.SalesOrderID) inner join SalesLT.Product as p on p.ProductID=d.ProductID)",
 									"type": "Expression"
 								},
 								"queryTimeout": "02:00:00",
