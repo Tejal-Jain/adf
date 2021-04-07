@@ -7,13 +7,41 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "tejaladf"
 		},
-		"triggeredInsan_properties_JustDoCopy_parameters_SourceFile": {
-			"type": "string",
-			"defaultValue": "@triggerBody().fileName"
+		"FileServerLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServerLS'"
 		},
-		"triggeredInsan_properties_typeProperties_scope": {
+		"SqlServerLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServerLS'"
+		},
+		"SqlServerLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlServerLS'"
+		},
+		"SqlServerLSADVWorks_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServerLSADVWorks'"
+		},
+		"SqlServerLSADVWorks_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlServerLSADVWorks'"
+		},
+		"FileServerLS_properties_typeProperties_host": {
 			"type": "string",
-			"defaultValue": "/subscriptions/f644db40-4eb4-448a-a29f-5e1cb52a783e/resourceGroups/tejallti/providers/Microsoft.Storage/storageAccounts/tejalltistorageacc"
+			"defaultValue": "C:\\Users\\admin\\Documents\\tejal lti"
+		},
+		"FileServerLS_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "admin"
+		},
+		"SqlServerLS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "admin"
+		},
+		"SqlServerLSADVWorks_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "admin"
 		}
 	},
 	"variables": {
@@ -21,44 +49,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/Json1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorageLS",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "tejalcontainer"
-					}
-				},
-				"schema": {
-					"type": "object",
-					"properties": {
-						"Name": {
-							"type": "string"
-						},
-						"OrderDate": {
-							"type": "string"
-						},
-						"SalesOrderID": {
-							"type": "integer"
-						},
-						" ProductName": {
-							"type": "string"
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlTable2')]",
+			"name": "[concat(parameters('factoryName'), '/WatermarkDataset')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -70,191 +61,105 @@
 				"type": "AzureSqlTable",
 				"schema": [
 					{
-						"name": "ProductKey",
-						"type": "int",
-						"precision": 10
+						"name": "TableName",
+						"type": "varchar"
 					},
 					{
-						"name": "ProductAlternateKey",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ProductSubcategoryKey",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "WeightUnitMeasureCode",
-						"type": "nchar"
-					},
-					{
-						"name": "SizeUnitMeasureCode",
-						"type": "nchar"
-					},
-					{
-						"name": "EnglishProductName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SpanishProductName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FrenchProductName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "StandardCost",
-						"type": "money",
-						"precision": 19,
-						"scale": 4
-					},
-					{
-						"name": "FinishedGoodsFlag",
-						"type": "bit"
-					},
-					{
-						"name": "Color",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SafetyStockLevel",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "ReorderPoint",
-						"type": "smallint",
-						"precision": 5
-					},
-					{
-						"name": "ListPrice",
-						"type": "money",
-						"precision": 19,
-						"scale": 4
-					},
-					{
-						"name": "Size",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SizeRange",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Weight",
-						"type": "float",
-						"precision": 15
-					},
-					{
-						"name": "DaysToManufacture",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ProductLine",
-						"type": "nchar"
-					},
-					{
-						"name": "DealerPrice",
-						"type": "money",
-						"precision": 19,
-						"scale": 4
-					},
-					{
-						"name": "Class",
-						"type": "nchar"
-					},
-					{
-						"name": "Style",
-						"type": "nchar"
-					},
-					{
-						"name": "ModelName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "LargePhoto",
-						"type": "varbinary"
-					},
-					{
-						"name": "EnglishDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FrenchDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ChineseDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ArabicDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "HebrewDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ThaiDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "GermanDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "JapaneseDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TurkishDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "StartDate",
+						"name": "WatermarkValue",
 						"type": "datetime",
 						"precision": 23,
 						"scale": 3
-					},
-					{
-						"name": "EndDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Status",
-						"type": "nvarchar"
 					}
 				],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "DimProduct"
+					"table": "watermarktable"
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Json2')]",
+			"name": "[concat(parameters('factoryName'), '/FileServerLS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "[parameters('FileServerLS_properties_typeProperties_host')]",
+					"userId": "[parameters('FileServerLS_properties_typeProperties_userId')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('FileServerLS_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "OnPremIR",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SqlServerLS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('SqlServerLS_connectionString')]",
+					"userName": "[parameters('SqlServerLS_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('SqlServerLS_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "OnPremIR",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SqlServerLSADVWorks')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('SqlServerLSADVWorks_connectionString')]",
+					"userName": "[parameters('SqlServerLSADVWorks_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('SqlServerLSADVWorks_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "OnPremIR",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Sqlsinkass41')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "blobLS",
+					"referenceName": "SqlServer1",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Json",
+				"type": "SqlServerTable",
+				"schema": [],
 				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "assfour"
-					}
-				},
-				"schema": {}
+					"schema": "dbo",
+					"table": "dummy"
+				}
 			},
 			"dependsOn": []
 		},
@@ -541,7 +446,9 @@
 				"annotations": [],
 				"lastPublishTime": "2021-04-04T17:02:47Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/WatermarkDataset')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/JustDoCopy')]",
@@ -657,7 +564,9 @@
 				},
 				"schema": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/FileServerLS')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SourceDataset_dk7')]",
@@ -705,7 +614,9 @@
 					}
 				]
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/FileServerLS')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SourceDataset_ehs')]",
@@ -732,7 +643,9 @@
 					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SqlServerLS')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SqlServerTable1')]",
@@ -771,7 +684,9 @@
 					"table": "Department"
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SqlServerLSADVWorks')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SqlServerTable2')]",
@@ -810,7 +725,9 @@
 					"table": "EmployeeDepartmentHistory"
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SqlServerLSADVWorks')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SCD-DataFlow')]",
@@ -906,9 +823,142 @@
 					"script": "source(output(\n\t\tProductKey as integer,\n\t\tProductAlternateKey as string,\n\t\tProductSubcategoryKey as integer,\n\t\tWeightUnitMeasureCode as string,\n\t\tSizeUnitMeasureCode as string,\n\t\tEnglishProductName as string,\n\t\tSpanishProductName as string,\n\t\tFrenchProductName as string,\n\t\tStandardCost as decimal(19,4),\n\t\tFinishedGoodsFlag as boolean,\n\t\tColor as string,\n\t\tSafetyStockLevel as integer,\n\t\tReorderPoint as integer,\n\t\tListPrice as decimal(19,4),\n\t\tSize as string,\n\t\tSizeRange as string,\n\t\tWeight as double,\n\t\tDaysToManufacture as integer,\n\t\tProductLine as string,\n\t\tDealerPrice as decimal(19,4),\n\t\tClass as string,\n\t\tStyle as string,\n\t\tModelName as string,\n\t\tLargePhoto as binary,\n\t\tEnglishDescription as string,\n\t\tFrenchDescription as string,\n\t\tChineseDescription as string,\n\t\tArabicDescription as string,\n\t\tHebrewDescription as string,\n\t\tThaiDescription as string,\n\t\tGermanDescription as string,\n\t\tJapaneseDescription as string,\n\t\tTurkishDescription as string,\n\t\tStartDate as timestamp,\n\t\tEndDate as timestamp,\n\t\tStatus as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> source1\nsource1 split(ProductKey>=1 && ProductKey<=10,\n\tdisjoint: false) ~> ConditionalSplit1@(oen, others)\nConditionalSplit1@oen sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1\nConditionalSplit1@others sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink2"
 				}
 			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/serverass41')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServerLSADVWorks",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "BusinessEntityID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NationalIDNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LoginID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OrganizationNode",
+						"type": "AdventureWorks2012.sys.hierarchyid"
+					},
+					{
+						"name": "OrganizationLevel",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "JobTitle",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BirthDate",
+						"type": "date"
+					},
+					{
+						"name": "MaritalStatus",
+						"type": "nchar"
+					},
+					{
+						"name": "Gender",
+						"type": "nchar"
+					},
+					{
+						"name": "HireDate",
+						"type": "date"
+					},
+					{
+						"name": "SalariedFlag",
+						"type": "bit"
+					},
+					{
+						"name": "VacationHours",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "SickLeaveHours",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CurrentFlag",
+						"type": "bit"
+					},
+					{
+						"name": "rowguid",
+						"type": "uniqueidentifier"
+					},
+					{
+						"name": "ModifiedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "HumanResources",
+					"table": "Employee"
+				}
+			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/AzureSqlTable2')]",
-				"[concat(variables('factoryId'), '/datasets/Json2')]"
+				"[concat(variables('factoryId'), '/linkedServices/SqlServerLSADVWorks')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Ass43')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Data flow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "dataflow1",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {},
+									"sink2": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
 			]
 		},
 		{
@@ -2074,126 +2124,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SqlServerTable1')]",
 				"[concat(variables('factoryId'), '/datasets/SqlServerTable2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SCDpipeline')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Data flow1",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "SCD-DataFlow",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"SalesLtCustomer": {},
-									"DimCustomer": {},
-									"sink1": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/SCD-DataFlow')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/triggeredInsan')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "JustDoCopy",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"SourceFile": "[parameters('triggeredInsan_properties_JustDoCopy_parameters_SourceFile')]"
-						}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/tejalcontainer/blobs/",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('triggeredInsan_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/JustDoCopy')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Ass43')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Data flow1",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "dataflow1",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source1": {},
-									"sink1": {},
-									"sink2": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
 			]
 		}
 	]

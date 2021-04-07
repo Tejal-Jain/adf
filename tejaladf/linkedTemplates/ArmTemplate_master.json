@@ -43,6 +43,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'blobLS'"
 		},
+		"SqlServer1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer1'"
+		},
 		"FileServerLS_properties_typeProperties_host": {
 			"type": "string",
 			"defaultValue": "C:\\Users\\admin\\Documents\\tejal lti"
@@ -106,6 +110,27 @@
 					"blobLS_connectionString": {
 						"value": "[parameters('blobLS_connectionString')]"
 					},
+					"SqlServer1_connectionString": {
+						"value": "[parameters('SqlServer1_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "tejaladf_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
 					"FileServerLS_password": {
 						"value": "[parameters('FileServerLS_password')]"
 					},
@@ -135,16 +160,18 @@
 					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'tejaladf_ArmTemplate_0')]"
+			]
 		},
 		{
-			"name": "tejaladf_ArmTemplate_1",
+			"name": "tejaladf_ArmTemplate_2",
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "2018-02-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
-					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {
@@ -160,7 +187,7 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'tejaladf_ArmTemplate_0')]"
+				"[resourceId('Microsoft.Resources/deployments', 'tejaladf_ArmTemplate_1')]"
 			]
 		}
 	]
