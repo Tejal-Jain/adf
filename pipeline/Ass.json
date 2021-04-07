@@ -37,7 +37,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "AzureSqlTable3",
+						"referenceName": "AzureSqlTableAss6",
 						"type": "DatasetReference"
 					}
 				],
